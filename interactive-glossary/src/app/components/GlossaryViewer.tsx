@@ -12,10 +12,12 @@
  */
 import { Box, Typography, Paper } from "@mui/material";
 import React from "react";
+import Quiz from "./Quiz";
 
 // GlossaryViewerProps is an interface for the props of the GlossaryViewer component
 interface GlossaryViewerProps {
     term: Term | null;
+    answerGiven: boolean;
 }
 
 // Term is an interface for the term object
@@ -23,9 +25,11 @@ interface Term {
     name: string;
     definition: string;
     image: string;
+    question: string;
+    answer: string;
 }
 
-const GlossaryViewer: React.FC<GlossaryViewerProps> = (props) => {
+const GlossaryViewer: React.FC<GlossaryViewerProps> = (props: any) => {
     return (
         //utilising Box, Typography, and Paper from Material-UI to render the glossary viewer
         <Box p={2}>
@@ -47,12 +51,19 @@ const GlossaryViewer: React.FC<GlossaryViewerProps> = (props) => {
                 <Box mt={2}>
                     {/* // if props.term.image is not null, the component will display the image of the term */}
                     <img
+                        className="max-w-[50%]"
                         src={props.term.image}
                         alt={props.term.name}
                         style={{ width: "100%", height: "auto" }}
                     />
                 </Box>
             )}
+            <Quiz
+                term={props.term}
+                answerGiven={props.answerGiven}
+                setAnswerGiven={props.setAnswerGiven}
+            />
+            ;
         </Box>
     );
 };

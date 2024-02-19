@@ -6,11 +6,14 @@ import GlossaryViewer from "./components/GlossaryViewer";
 import { useState } from "react";
 import concepts from "../app/modal/conepts";
 import SideBar from "./components/SideBar";
+import Quiz from "./components/Quiz";
 
 interface Term {
     name: string;
     definition: string;
     image: string;
+    question: string;
+    answer: string;
 }
 
 /**
@@ -24,6 +27,8 @@ export default function Home() {
     const [selectedTerm, setSelectedTerm] = useState<Term | null>(concepts[0]);
     // concepts.onChange as Term
 
+    const [answerGiven, setAnswerGiven] = useState<boolean>(false);
+
     return (
         // ensures the sidebar, and the glossary viewer are displayed side by side
         <main
@@ -35,9 +40,17 @@ export default function Home() {
             {/* renders the sidebar and the glossary viewer */}
             {/* current term and ability tro set the term is passed as props to SideBar */}
             {/* sidebar uses selectedTerms to set the header of the sidebar, and setSelectedTerm to enable onClick functions */}
-            <SideBar term={selectedTerm} setTerm={setSelectedTerm} />
+            <SideBar
+                term={selectedTerm}
+                setTerm={setSelectedTerm}
+                setAnswerGiven={setAnswerGiven}
+            />
             {/* GlossaryViewer needs selectedTerm prop in order to display correct data */}
-            <GlossaryViewer term={selectedTerm} />
+            <GlossaryViewer
+                term={selectedTerm}
+                answerGiven={answerGiven}
+                setAnswerGiven={setAnswerGiven}
+            />
         </main>
     );
 }

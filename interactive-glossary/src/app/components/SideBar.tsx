@@ -59,7 +59,10 @@ export default function SideBar(props: any) {
                         <ListItemButton>
                             <ListItem
                                 key={concept.name}
-                                onClick={() => props.setTerm(concept)}
+                                onClick={() => {
+                                    props.setTerm(concept);
+                                    props.setAnswerGiven(false);
+                                }}
                             >
                                 <ListItemText primary={concept.name} />
                             </ListItem>
