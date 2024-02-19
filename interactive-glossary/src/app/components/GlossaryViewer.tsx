@@ -34,8 +34,8 @@ const GlossaryViewer: React.FC<GlossaryViewerProps> = (props) => {
             </Typography>
             <Paper elevation={3} style={{ padding: "20px", marginTop: "20px" }}>
                 {/* // usiing props.term to display the name, definition, and image of the term
-        // if props.term is null, the component will display "Select a term"
-        // if props.term is not null, the component will display the name, definition, and image of the term */}
+        if props.term is null, the component will display "Select a term"
+        if props.term is not null, the component will display the name, definition, and image of the term */}
                 <Typography variant="h5" component="h1" gutterBottom>
                     {props.term ? props.term.name : "Select a term"}
                 </Typography>

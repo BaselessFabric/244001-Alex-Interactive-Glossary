@@ -20,9 +20,9 @@ interface Term {
 export default function Home() {
     // initializes the selected term state
     // state holds an object which represents a glossary term
-    const [selectedTerm, setSelectedTerm] = useState<Term | null>(
-        concepts.onChange as Term
-    );
+
+    const [selectedTerm, setSelectedTerm] = useState<Term | null>(concepts[0]);
+    // concepts.onChange as Term
 
     return (
         // ensures the sidebar, and the glossary viewer are displayed side by side

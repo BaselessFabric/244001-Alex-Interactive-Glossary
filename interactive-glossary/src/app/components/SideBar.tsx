@@ -53,17 +53,17 @@ export default function SideBar(props: any) {
                     <Typography variant="h6">{props.term.name}</Typography>
                 </Toolbar>
                 <Divider />
+                {/* // renders a list of concepts in the sidebar by mapping over the conept array */}
                 <List>
-                    {/* // renders a list of concepts in the sidebar by mapping through the concepts object */}
-                    {Object.values(concepts).map((concept) => (
-                        <ListItem key={concept.name} disablePadding>
-                            <ListItemButton>
-                                <ListItemText
-                                    primary={concept.name}
-                                    onClick={() => props.setTerm(concept)}
-                                />
-                            </ListItemButton>
-                        </ListItem>
+                    {concepts.map((concept) => (
+                        <ListItemButton>
+                            <ListItem
+                                key={concept.name}
+                                onClick={() => props.setTerm(concept)}
+                            >
+                                <ListItemText primary={concept.name} />
+                            </ListItem>
+                        </ListItemButton>
                     ))}
                 </List>
             </Drawer>
