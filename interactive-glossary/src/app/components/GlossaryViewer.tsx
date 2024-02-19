@@ -42,17 +42,17 @@ const GlossaryViewer: React.FC<GlossaryViewerProps> = (props) => {
                 <Typography variant="body1" component="p">
                     {props.term ? props.term.definition : ""}
                 </Typography>
-                {props.term && props.term.image && (
-                    <Box mt={2}>
-                        {/* // if props.term.image is not null, the component will display the image of the term */}
-                        <img
-                            src={props.term.image}
-                            alt={props.term.name}
-                            style={{ width: "100%", height: "auto" }}
-                        />
-                    </Box>
-                )}
             </Paper>
+            {props.term && props.term.image && (
+                <Box mt={2}>
+                    {/* // if props.term.image is not null, the component will display the image of the term */}
+                    <img
+                        src={props.term.image}
+                        alt={props.term.name}
+                        style={{ width: "100%", height: "auto" }}
+                    />
+                </Box>
+            )}
         </Box>
     );
 };
