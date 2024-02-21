@@ -3,7 +3,7 @@
  */
 "use client";
 import GlossaryViewer from "./components/GlossaryViewer";
-import { useState } from "react";
+import { useState, createContext } from "react";
 import concepts from "../app/modal/conepts";
 import SideBar from "./components/SideBar";
 import Quiz from "./components/Quiz";
@@ -14,7 +14,11 @@ interface Term {
     image: string;
     question: string;
     answer: string;
+    checkAnswer: Function;
+    setAnswerGiven: Function;
 }
+
+export const QuizContext = createContext(undefined);
 
 /**
  * Renders the Home page.
@@ -40,17 +44,21 @@ export default function Home() {
             {/* renders the sidebar and the glossary viewer */}
             {/* current term and ability tro set the term is passed as props to SideBar */}
             {/* sidebar uses selectedTerms to set the header of the sidebar, and setSelectedTerm to enable onClick functions */}
+
             <SideBar
                 term={selectedTerm}
                 setTerm={setSelectedTerm}
                 setAnswerGiven={setAnswerGiven}
             />
             {/* GlossaryViewer needs selectedTerm prop in order to display correct data */}
-            <GlossaryViewer
-                term={selectedTerm}
-                answerGiven={answerGiven}
-                setAnswerGiven={setAnswerGiven}
-            />
+            <QuizContext.Provider value={{answerGiven, setAnswerGiven}}>
+            >
+                <GlossaryViewer
+                    term={selectedTerm}
+                    // answerGiven={answerGiven}
+                    // setAnswerGiven={setAnswerGiven}
+                />
+            </QuizContext.Provider>
         </main>
     );
 }

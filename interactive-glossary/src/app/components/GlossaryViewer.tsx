@@ -18,6 +18,7 @@ import Quiz from "./Quiz";
 interface GlossaryViewerProps {
     term: Term | null;
     answerGiven: boolean;
+    setAnswerGiven: Function;
 }
 
 // Term is an interface for the term object
@@ -27,9 +28,11 @@ interface Term {
     image: string;
     question: string;
     answer: string;
+    checkAnswer: Function;
+    setAnswerGiven: Function;
 }
 
-const GlossaryViewer: React.FC<GlossaryViewerProps> = (props: any) => {
+const GlossaryViewer: React.FC<GlossaryViewerProps> = (props) => {
     return (
         //utilising Box, Typography, and Paper from Material-UI to render the glossary viewer
         <Box p={2}>
@@ -60,8 +63,8 @@ const GlossaryViewer: React.FC<GlossaryViewerProps> = (props: any) => {
             )}
             <Quiz
                 term={props.term}
-                answerGiven={props.answerGiven}
-                setAnswerGiven={props.setAnswerGiven}
+                // answerGiven={props.answerGiven}
+                // setAnswerGiven={props.setAnswerGiven}
             />
             ;
         </Box>

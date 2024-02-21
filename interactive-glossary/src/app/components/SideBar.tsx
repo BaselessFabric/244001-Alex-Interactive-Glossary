@@ -55,10 +55,10 @@ export default function SideBar(props: any) {
                 <Divider />
                 {/* // renders a list of concepts in the sidebar by mapping over the conept array */}
                 <List>
-                    {concepts.map((concept) => (
+                    {concepts.map((concept, index) => (
                         <ListItemButton>
                             <ListItem
-                                key={concept.name}
+                                key={index}
                                 onClick={() => {
                                     props.setTerm(concept);
                                     props.setAnswerGiven(false);

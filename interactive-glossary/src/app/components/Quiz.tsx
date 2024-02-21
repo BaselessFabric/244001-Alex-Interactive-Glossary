@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Box, Typography, Paper, TextField, Button } from "@mui/material";
+import { QuizContext } from "../page";
 
 interface QuizProps {
     term: Term | null;
+    answerGiven: boolean;
+    setAnswerGiven: Function;
 }
 
 // Term is an interface for the term object
@@ -11,12 +14,21 @@ interface Term {
     definition: string;
     image: string;
     question: string;
-    checkAnswer: any;
+    answer: string;
+    checkAnswer: Function;
+    setAnswerGiven: Function;
 }
 
 const Quiz: React.FC<QuizProps> = (props: any) => {
     const [correctAnswer, setCorrectAnswer] = useState<boolean>(false);
     const [answer, setAnswer] = useState<string>("");
+    const quizContext = useContext(QuizContext);
+
+    if (!quizContext) {
+        throw new Error("Quiz must be used within a QuizProvider");
+    }
+
+    const { answerGiven, setAnswerGiven } = quizContext;
 
     return (
         <Box>
@@ -59,7 +71,7 @@ const Quiz: React.FC<QuizProps> = (props: any) => {
                                 props.term.checkAnswer(answer)
                                     ? setCorrectAnswer(true)
                                     : setCorrectAnswer(false);
-                                props.setAnswerGiven(true);
+                                setAnswerGiven(true);
                             }
                         }}
                     >
@@ -71,7 +83,7 @@ const Quiz: React.FC<QuizProps> = (props: any) => {
                     component="h1"
                     gutterBottom
                     style={{
-                        display: props.answerGiven ? "block" : "none",
+                        display: answerGiven ? "block" : "none",
                         marginLeft: "20px",
                     }}
                 >
