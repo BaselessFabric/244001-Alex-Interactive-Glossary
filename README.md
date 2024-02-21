@@ -84,8 +84,9 @@ Contributions are welcome! If you have suggestions to improve this application, 
 License
 
 Distributed under the MIT License. See LICENSE for more information.
+
 Acknowledgments
 
-Next.js Documentation - for Next.js specific features and optimizations.
-React Documentation - for understanding the React framework.
-MUI - for UI components and design system.
+   Next.js Documentation - for Next.js specific features and optimizations.<br>
+   React Documentation - for understanding the React framework.<br>
+   MUI - for UI components and design system.
